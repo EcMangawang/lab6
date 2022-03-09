@@ -107,6 +107,7 @@ public class UserDB {
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
         }
+        return inserted;
     }
 
     public void update(Note note) throws Exception {
