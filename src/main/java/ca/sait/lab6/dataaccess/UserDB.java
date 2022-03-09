@@ -82,7 +82,7 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO `userdb`.`user` (`email`, `first_name`, `last_name`, `password`, `role`) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO user (`email`, `first_name`, `last_name`, `password`, `role`) VALUES (?, ?, ?, ?, ?);";
         
         boolean inserted = false;
         
@@ -110,18 +110,18 @@ public class UserDB {
         return inserted;
     }
 
-    public void update(Note note) throws Exception {
+    public void update(User user) throws Exception {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE note SET title=?, contents=? WHERE note_id=?";
+        String sql = "UPDATE user SET `first_name` = ?, `last_name` = ?, `password` =?, `role` = ? WHERE  `email` = ?;";
         
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, note.getTitle());
-            ps.setString(2, note.getContents());
-            ps.setInt(3, note.getNoteId());
-            ps.executeUpdate();
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5, user.getRole().getId());
         } finally {
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
