@@ -40,7 +40,7 @@
                                     <button type="submit" class="" name="action"  value="edit?${user.email}">Edit</button>
                                 </td>
                                 <td>
-                                    <button type="submit" class="" name="action" value="delete?${user.email}">Delete</button>
+                                    <button type="submit" class="" name="action" value="delete?${user.email}"></i>Delete</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -77,7 +77,7 @@
                                 </td>
                                 <td>
                                     <select name="role">
-                                        <option value="">Please select a role</option>
+                                        <option value="">Select a role</option>
                                         <c:forEach var="role" items="${roles}">
                                             <option value="${role.name}">${role.name}</option>
                                         </c:forEach>
@@ -93,6 +93,53 @@
                         </tbody>
                     </table>
                 </form>
+
+<!--Edit User Form -->
+                <form action="user" method="POST">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="email" name="email" readonly value="${user.email}">
+                            </td>
+                            <td>
+                                <input type="text" name="firstName" value="${user.firstName}">
+                            </td>
+                            <td>
+                                <input type="text" name="lastName" value="${user.lastName}">
+                            </td>
+                            <td>
+                                <input type="password" name="password" value="${user.password}">
+                            </td>
+                            <td>
+                                <select name="role">
+                                    <option value="">Please select a role</option>
+                                    <c:forEach var="role" items="${roles}">
+                                        <option value="${role.name}">${role.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="active">
+                            </td>
+                            <td>
+                                <button type="submit" class="" name="action" value="edit">Save</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+                    <p class="text-center">${message}</p>
                 </div>
             </div>
         </div>

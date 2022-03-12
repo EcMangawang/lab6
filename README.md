@@ -8,4 +8,4 @@ Fixed error of page not showing, view now shows the jsp but data not being pulle
 **
 
 **UPDATE
-FIXED view, jsp now successfully pulls data from db
+FIXED view, jsp now successfully pulls data from db. Application works as intended which gives the user the ability to add, update, and delete user database entries.
