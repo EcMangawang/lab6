@@ -10,32 +10,41 @@
 
     </head>
     <body>
-        <h1>Emmari's User Management System</h1>
+        <h1 class="text-center">Emmari's User Management System</h1>
         
         <div class="container">
             <div class="row">
                 <div class="col">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>E-mail</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${users}">
-                                        <tr>
-                                            <td>${user.email}</td>
-                                            <td>${user.firstName}</td>
-                                            <td>${user.lastName}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+            <form action="user" method="POST" >
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="user" items="${users}">
+                            <tr>
+                                <td>${user.email}</td>
+                                <td>${user.firstName}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.active ? "Y" : "N"}</td>
+                                <td>
+                                    <button type="submit" class="" name="action"  value="edit?${user.email}">Edit</button>
+                                    <button type="submit" class="" name="action" value="delete?${user.email}">Delete</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </form>
                 </div>
             </div>
         </div>
-
+        
     </body>
 </html>

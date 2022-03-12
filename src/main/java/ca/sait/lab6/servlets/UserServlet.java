@@ -65,6 +65,17 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         UserService sv = new UserService();
+       
+        String action = request.getParameter("action");
+        String email = request.getParameter("email");      
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String password = request.getParameter("password"); 
+        String roleId = request.getParameter("roleId");
+        String roleName = "";
+        
                     this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
     }
 
