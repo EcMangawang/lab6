@@ -15,27 +15,27 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>E-mail</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${users}">
+                                        <tr>
+                                            <td>${user.email}</td>
+                                            <td>${user.firstName}</td>
+                                            <td>${user.lastName}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                 </div>
             </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>E-mail</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${users}">
-                    <tr>
-                        <td>${user.email}</td>
-                        <td>${user.firstName}</td>
-                        <td>${user.lastName}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+
     </body>
 </html>

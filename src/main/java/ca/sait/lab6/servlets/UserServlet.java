@@ -46,12 +46,12 @@ public class UserServlet extends HttpServlet {
             
             request.setAttribute("users", users);
             
-            this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+          this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
         } catch (Exception ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**
