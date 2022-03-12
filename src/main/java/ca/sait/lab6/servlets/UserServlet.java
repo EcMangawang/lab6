@@ -26,18 +26,20 @@ public class UserServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    UserService userService = new UserService();
+    RoleService roleService = new RoleService();
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         try {
             
-        UserService uservice = new UserService();
-        List<User> users = uservice.getAll();
+        List<User> users = userService.getAll();
         request.setAttribute("users", users);
             
-        RoleService rs = new RoleService();
-        List<Role> roles = rs.getAll();
+        List<Role> roles = roleService.getAll();
         request.setAttribute("roles", roles);
         
         this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
@@ -74,7 +76,6 @@ public class UserServlet extends HttpServlet {
          if (action != null && action.equals("add")) {
             
             try {
-                RoleService roleService = new RoleService();
                 List<Role> roleList;
                 roleList = roleService.getAll();
 
@@ -89,7 +90,6 @@ public class UserServlet extends HttpServlet {
                 }
 
                 Role role = new Role(roleId, roleName);
-                UserService userService = new UserService();
                 
                 userService.insert(email, active, firstName, lastName, password, role);
                 request.setAttribute("message", "New user added");
@@ -102,7 +102,6 @@ public class UserServlet extends HttpServlet {
         } else if (action != null && action.contains("edit?")) {
             try {
                 email = action.split("\\?", 2)[1];
-                UserService userService = new UserService();
                 User user = userService.get(email);
                 request.setAttribute("user", user);
             } catch (Exception ex) {
@@ -111,7 +110,6 @@ public class UserServlet extends HttpServlet {
         } else if (action != null && action.equals("edit")) {
 //Edit User
             try {
-                RoleService roleService = new RoleService();
                 List<Role> roleList;
                 roleList = roleService.getAll();
 
@@ -126,7 +124,6 @@ public class UserServlet extends HttpServlet {
                 }
 
                 Role role = new Role(roleId, roleName);
-                UserService userService = new UserService();
                 userService.update(email, active, firstName, lastName, password, role);
                 request.setAttribute("message", "User updated");
 
@@ -148,9 +145,9 @@ public class UserServlet extends HttpServlet {
             }  
         }
         try {
-            UserService userService = new UserService();
+            
             List<User> users = userService.getAll();
-            RoleService roleService = new RoleService();
+
             List<Role> roles = roleService.getAll();
             
             request.setAttribute("users", users);
